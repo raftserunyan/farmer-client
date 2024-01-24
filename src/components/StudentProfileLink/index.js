@@ -1,0 +1,1 @@
+export { StudentProfileLink } from './StudentProfileLink'

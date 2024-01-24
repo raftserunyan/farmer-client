@@ -1,0 +1,1 @@
+export const getCourseSemesters = (courseNumber) => [courseNumber * 2  - 1, courseNumber * 2]

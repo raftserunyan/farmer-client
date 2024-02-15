@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: | 
           npm ci --legacy-peer-deps
+      - name: Build the app
+        run: |
+          export REACT_APP_API_URL=${{ secrets.REMOTE_SERVER_API_URL }}
           CI=false npm run build
       - name: Build And Deploy
         id: builddeploy

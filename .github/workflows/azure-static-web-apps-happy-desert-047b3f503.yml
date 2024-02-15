@@ -25,9 +25,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: '16.20.2'
-      - name: Replace REACT_APP_API_URL in .env
-        run: echo "REACT_APP_API_URL=${{ secrets.REMOTE_SERVER_API_URL }}" > .env
+          node-version: '16.20.2'     
       - name: Install dependencies
         run: | 
           npm ci --legacy-peer-deps

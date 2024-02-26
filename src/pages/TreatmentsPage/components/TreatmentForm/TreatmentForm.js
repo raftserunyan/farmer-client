@@ -114,7 +114,7 @@ export const TreatmentForm = ({
 								<Select
 									value={selectedMeasurementUnit}
 									options={measurementUnits.list}
-									placeholder='Չափպան Միավոր'
+									placeholder='Չափման Միավոր'
 									onChange={val => {
 										setFieldValue(
 											'measurementUnitId',

@@ -12,8 +12,18 @@ import { ApproveCommand } from 'components/ApproveCommand';
 export const tableColumns = {
 	credits: [
 		{
-			Header: 'Քաշ',
-			accessor: 'weight',
+			Header: 'Հաճախորդ',
+			accessor: ({ customer }) =>
+				`${customer.id} (ID) - ${customer.name} - ${customer.phoneNumber}`,
+		},
+		{
+			Header: 'Պարտք',
+			accessor: 'credit',
+		},	
+		{
+			Header: 'Ապրանք',
+			accessor: ({ product }) =>
+			`${product.id} (ID) - ${product.name} - ${product.priceKG}`,
 		},
 		{
 			Header: 'Գին (ԿԳ)',
@@ -24,26 +34,16 @@ export const tableColumns = {
 			accessor: 'paid',
 		},
 		{
-			Header: 'Ամսաթիվ',
-			accessor: 'date',
+			Header: 'Քաշ',
+			accessor: 'weight',
 		},
 		{
 			Header: 'ԱրԺեք',
 			accessor: 'cost',
-		},
+		},					
 		{
-			Header: 'Պարտք',
-			accessor: 'credit',
-		},
-		{
-			Header: 'Ապրանք',
-			accessor: ({ product }) =>
-				`${product.id} (ID) - ${product.name} - ${product.priceKG}`,
-		},
-		{
-			Header: 'Հաճախորդ',
-			accessor: ({ customer }) =>
-				`${customer.id} (ID) - ${customer.name} - ${customer.phoneNumber}`,
+			Header: 'Ամսաթիվ',
+			accessor: ({ date }) => formatDate(date),
 		},
 	],
 	measurementUnits: [
@@ -420,10 +420,10 @@ export const tableColumns = {
 				`${drugAmount} ${measurementUnit?.name}`,
 		},
 		{
-			Header: 'Բուժված ապրանքներ ID ներ',
+			Header: 'Բուժված ապրանքներ (ID-ներով)',
 			accessor: ({ products }) =>
 				products
-					.map(product => `${product.id} - ${product.name}`)
+					.map(product => `${product.name}(${product.id})`)
 					.join(', '), // treatedProductsIds
 		},
 		{
@@ -464,7 +464,7 @@ export const tableColumns = {
 		},
 		{
 			Header: 'Նպատակ',
-			accessor: 'expensePurpose',
+			accessor: ({ target }) => target?.name,
 		},
 		{
 			Header: 'Ամսաթիվ',
@@ -474,8 +474,8 @@ export const tableColumns = {
 	sales: [
 		{
 			Header: 'Ապրանք',
-			accessor: ({ currentProduct }) =>
-				currentProduct?.name,
+			accessor: ({ product }) =>
+				product?.name,
 		},
 		{
 			Header: 'Քաշ',
@@ -487,12 +487,12 @@ export const tableColumns = {
 		},
 		{
 			Header: 'Հաճախորդ',
-			accessor: ({ currentCustomer }) =>
-				`${currentCustomer.name} - ${currentCustomer.phoneNumber}`,
+			accessor: ({ customer }) =>
+				`${customer?.name} - ${customer?.phoneNumber}`,
 		},
 		{
 			Header: 'Վճարված գումար',
-			accessor: 'payed',
+			accessor: 'paid',
 		},
 		{
 			Header: 'Պարտք',

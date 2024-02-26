@@ -155,13 +155,13 @@ export const SalesForm = ({
 								)}
 							</S.FormItem>
 							<Input
-								value={values.payed}
+								value={values.paid}
 								placeholder='Վճարված գումար'
 								onChange={val =>
-									setFieldValue('payed', val)
+									setFieldValue('paid', val)
 								}
 								onEnter={handleSubmit}
-								error={touched.payed && errors.payed}
+								error={touched.paid && errors.paid}
 							/>
 							<S.ButtonsContainer>
 								<Button

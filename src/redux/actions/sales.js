@@ -6,11 +6,14 @@ import { HttpService } from 'services';
 export const loadSales = search => async dispatch => {
 	try {
 		// const { data, total } = await HttpService.post('sales', search)
-		const list = await HttpService.post('sales', search);
+		const list = await HttpService.post(
+			'sales/Get',
+			 search
+		);
 
 		dispatch({
 			type: SALES_TYPES.LOAD_SALES,
-			list,
+			list: list.results,
 			total: list.length,
 		});
 	} catch (ex) {
@@ -21,8 +24,8 @@ export const loadSales = search => async dispatch => {
 export const editSale = values => async dispatch => {
 	try {
 		await HttpService.put(
-			`sales`,
-			{ id: values.id },
+			`sales/${values.id}`,
+			{},
 			values
 		);
 

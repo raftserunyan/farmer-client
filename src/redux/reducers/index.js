@@ -13,39 +13,45 @@ import { products } from './products';
 import { treatments } from './treatments';
 import { students } from './students';
 import { commands } from './commands';
+import { credits } from './credits';
+import { targets } from './targets';
 import { privileges } from './privileges';
 import { professions } from './professions';
 import { communities } from './communities';
 import { customers } from './customers';
 import { expenses } from './expenses';
-import { sales } from './sales'
+import { sales } from './sales';
 import { commissariats } from './commissariats';
 import { nationalities } from './nationalities';
 import { healthStatuses } from './healthStatuses';
 import { commandsHistory } from './commandsHistory';
+import { measurementUnits } from './measurementUnits';
 
 export const rootReducer = combineReducers({
-  app,
-  auth,
-  users,
-  modal,
-  sales,
-  groups,
-  regions,
-  profile,
-  investments,
-  expenses,
-  products,
-  investors,
-  students,
-  commands,
-  privileges,
-  treatments,
-  professions,
-  communities,
-  customers,
-  commissariats,
-  nationalities,
-  healthStatuses,
-  commandsHistory
+	app,
+	auth,
+	users,
+	modal,
+	sales,
+	groups,
+	regions,
+	credits,
+	targets,
+	profile,
+	expenses,
+	commands,
+	students,
+	products,
+	customers,
+	investors,
+	privileges,
+	treatments,
+	professions,
+	investments,
+	communities,
+	commissariats,
+	nationalities,
+	healthStatuses,
+	commandsHistory,
+	measurementUnits,
 });

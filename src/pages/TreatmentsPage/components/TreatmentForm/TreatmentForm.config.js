@@ -1,14 +1,19 @@
 import * as Yup from 'yup';
 
 export const initialValues = {
-  drugName: '',
-  drugWeight: '',
-  treatedProductsIds: []
-}
+	drugName: '',
+	drugAmount: '',
+	treatedProductsIds: [],
+	treatedProducts: null,
+	measurementUnitId: null,
+	date: null,
+};
 
 export const validationSchema = Yup.object().shape({
-  drugName: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  drugWeight: Yup.number()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+	drugName: Yup.string().required(
+		'Դաշտը չի կարող դատարկ լինել'
+	),
+	drugAmount: Yup.number().required(
+		'Դաշտը չի կարող դատարկ լինել'
+	),
 });

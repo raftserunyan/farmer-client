@@ -22,24 +22,34 @@ import { lazy } from 'react';
 //   }))
 // );
 const InvestmentsPage = lazy(() =>
-  import('pages/InvestmentsPage').then((module) => ({
-    default: module.InvestmentsPage
-  }))
+	import('pages/InvestmentsPage').then(module => ({
+		default: module.InvestmentsPage,
+	}))
 );
 const InvestorsPage = lazy(() =>
-  import('pages/InvestorsPage').then((module) => ({
-    default: module.InvestorsPage
-  }))
+	import('pages/InvestorsPage').then(module => ({
+		default: module.InvestorsPage,
+	}))
 );
 const ProductsPage = lazy(() =>
-  import('pages/ProductsPage').then((module) => ({
-    default: module.ProductsPage
-  }))
+	import('pages/ProductsPage').then(module => ({
+		default: module.ProductsPage,
+	}))
 );
 const TreatmentsPage = lazy(() =>
-  import('pages/TreatmentsPage').then((module) => ({
-    default: module.TreatmentsPage
-  }))
+	import('pages/TreatmentsPage').then(module => ({
+		default: module.TreatmentsPage,
+	}))
+);
+const MeasurementUnitsPage = lazy(() =>
+	import('pages/MeasurementUnits').then(module => ({
+		default: module.MeasurementUnitsPage,
+	}))
+);
+const TargetsPage = lazy(() =>
+	import('pages/TargetsPage').then(module => ({
+		default: module.TargetsPage,
+	}))
 );
 // const PrivilegesPage = lazy(() =>
 //   import('pages/PrivilegesPage').then((module) => ({
@@ -52,19 +62,24 @@ const TreatmentsPage = lazy(() =>
 //   }))
 // );
 const CustomersPage = lazy(() =>
-  import('pages/CustomersPage').then((module) => ({
-    default: module.CustomersPage
-  }))
+	import('pages/CustomersPage').then(module => ({
+		default: module.CustomersPage,
+	}))
 );
 const ExpensesPage = lazy(() =>
-  import('pages/ExpensesPage').then((module) => ({
-    default: module.ExpensesPage
-  }))
+	import('pages/ExpensesPage').then(module => ({
+		default: module.ExpensesPage,
+	}))
 );
 const SalesPage = lazy(() =>
-  import('pages/SalesPage').then((module) => ({
-    default: module.SalesPage
-  }))
+	import('pages/SalesPage').then(module => ({
+		default: module.SalesPage,
+	}))
+);
+const CreditsPage = lazy(() =>
+	import('pages/CreditsPage').then(module => ({
+		default: module.CreditsPage,
+	}))
 );
 // const CommissariatsPage = lazy(() =>
 //   import('pages/CommissariatsPage').then((module) => ({
@@ -98,131 +113,149 @@ const SalesPage = lazy(() =>
 // );
 
 export const routes = [
-  // {
-  //   id: 101,
-  //   path: '/commands-history',
-  //   isProtected: true,
-  //   component: CommandsHistoryPage
-  // },
-  // {
-  //   id: 1,
-  //   path: '/commands',
-  //   isProtected: true,
-  //   component: CommandsPage
-  // },
-  // {
-  //   id: 2,
-  //   path: '/students',
-  //   isProtected: true,
-  //   component: StudentsPage
-  // },
-  // {
-  //   id: 3,
-  //   path: '/student/:studentId',
-  //   basePath: '/student',
-  //   isProtected: true,
-  //   component: StudentProfilePage
-  // },
-  // {
-  //   id: 4,
-  //   path: '/professions',
-  //   isProtected: true,
-  //   component: ProfessionsPage
-  // },
-  // {
-  //   id: 5,
-  //   path: '/users',
-  //   isProtected: true,
-  //   component: UsersPage
-  // },
-  {
-    id: 6,
-    path: '/customers',
-    isProtected: true,
-    component: CustomersPage
-  },
-  {
-    id: 7,
-    path: '/expenses',
-    isProtected: true,
-    component: ExpensesPage
-  },
-  // {
-  //   id: 7,
-  //   path: '/health-statuses',
-  //   isProtected: true,
-  //   component: HealthStatusesPage
-  // },
-  {
-    id: 8,
-    path: '/investors',
-    isProtected: true,
-    component: InvestorsPage
-  },
-  {
-    id: 16,
-    path: '/investments',
-    isProtected: true,
-    component: InvestmentsPage
-  },
-  {
-    id: 17,
-    path: '/products',
-    isProtected: true,
-    component: ProductsPage
-  },
-  {
-    id: 18,
-    path: '/treatments',
-    isProtected: true,
-    component: TreatmentsPage
-  },
-  {
-    id: 19,
-    path: '/sales',
-    isProtected: true,
-    component: SalesPage
-  },
-  // {
-  //   id: 9,
-  //   path: '/regions',
-  //   isProtected: true,
-  //   component: RegionsPage
-  // },
-  // {
-  //   id: 10,
-  //   path: '/regions',
-  //   isProtected: true,
-  //   component: RegionsPage
-  // },
-  // {
-  //   id: 11,
-  //   path: '/nationalities',
-  //   isProtected: true,
-  //   component: NationalitiesPage
-  // },
-  // {
-  //   id: 12,
-  //   path: '/privileges',
-  //   isProtected: true,
-  //   component: PrivilegesPage
-  // },
-  // {
-  //   id: 13,
-  //   path: '/commissariats',
-  //   isProtected: true,
-  //   component: CommissariatsPage
-  // },
-  // {
-  //   id: 14,
-  //   path: '/communities',
-  //   isProtected: true,
-  //   component: CommunitiesPage
-  // },
-  // {
-  //   id: 15,
-  //   path: '/groups',
-  //   isProtected: true,
-  //   component: GroupsPage
-  // }
+	// {
+	//   id: 101,
+	//   path: '/commands-history',
+	//   isProtected: true,
+	//   component: CommandsHistoryPage
+	// },
+	// {
+	//   id: 1,
+	//   path: '/commands',
+	//   isProtected: true,
+	//   component: CommandsPage
+	// },
+	// {
+	//   id: 2,
+	//   path: '/students',
+	//   isProtected: true,
+	//   component: StudentsPage
+	// },
+	// {
+	//   id: 3,
+	//   path: '/student/:studentId',
+	//   basePath: '/student',
+	//   isProtected: true,
+	//   component: StudentProfilePage
+	// },
+	// {
+	//   id: 4,
+	//   path: '/professions',
+	//   isProtected: true,
+	//   component: ProfessionsPage
+	// },
+	// {
+	//   id: 5,
+	//   path: '/users',
+	//   isProtected: true,
+	//   component: UsersPage
+	// },
+	{
+		id: 6,
+		path: '/customers',
+		isProtected: true,
+		component: CustomersPage,
+	},
+	{
+		id: 7,
+		path: '/expenses',
+		isProtected: true,
+		component: ExpensesPage,
+	},
+	// {
+	//   id: 7,
+	//   path: '/health-statuses',
+	//   isProtected: true,
+	//   component: HealthStatusesPage
+	// },
+	{
+		id: 8,
+		path: '/investors',
+		isProtected: true,
+		component: InvestorsPage,
+	},
+	{
+		id: 16,
+		path: '/investments',
+		isProtected: true,
+		component: InvestmentsPage,
+	},
+	{
+		id: 17,
+		path: '/products',
+		isProtected: true,
+		component: ProductsPage,
+	},
+	{
+		id: 18,
+		path: '/treatments',
+		isProtected: true,
+		component: TreatmentsPage,
+	},
+	{
+		id: 19,
+		path: '/sales',
+		isProtected: true,
+		component: SalesPage,
+	},
+	{
+		id: 20,
+		path: '/measurement-units',
+		isProtected: true,
+		component: MeasurementUnitsPage,
+	},
+	{
+		id: 21,
+		path: '/targets',
+		isProtected: true,
+		component: TargetsPage,
+	},
+	{
+		id: 22,
+		path: '/credits',
+		isProtected: true,
+		component: CreditsPage,
+	},
+	// {
+	//   id: 9,
+	//   path: '/regions',
+	//   isProtected: true,
+	//   component: RegionsPage
+	// },
+	// {
+	//   id: 10,
+	//   path: '/regions',
+	//   isProtected: true,
+	//   component: RegionsPage
+	// },
+	// {
+	//   id: 11,
+	//   path: '/nationalities',
+	//   isProtected: true,
+	//   component: NationalitiesPage
+	// },
+	// {
+	//   id: 12,
+	//   path: '/privileges',
+	//   isProtected: true,
+	//   component: PrivilegesPage
+	// },
+	// {
+	//   id: 13,
+	//   path: '/commissariats',
+	//   isProtected: true,
+	//   component: CommissariatsPage
+	// },
+	// {
+	//   id: 14,
+	//   path: '/communities',
+	//   isProtected: true,
+	//   component: CommunitiesPage
+	// },
+	// {
+	//   id: 15,
+	//   path: '/groups',
+	//   isProtected: true,
+	//   component: GroupsPage
+	// }
 ];

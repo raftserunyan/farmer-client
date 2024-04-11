@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Table } from 'components';
 import * as S from './CreditsPage.styles';
 import { Layout } from 'components/Layout';
 import { tableColumns } from 'constants/tableColumns';
+import { Button } from 'ui';
+import cx from 'classnames';
 
 export const CreditsPage = ({ credits, loadCredits }) => {
-  const [selectedOption, setSelectedOption] = useState("myDebths");
-  
-  const myDebthsClicked = () => {
+	const [selectedOption, setSelectedOption] =
+		useState('myDebths');
+
+	const myDebthsClicked = () => {
 		loadCredits('', {});
 		setSelectedOption('myDebths');
 	};
@@ -18,33 +21,46 @@ export const CreditsPage = ({ credits, loadCredits }) => {
 		setSelectedOption('myCredits');
 	};
 
-  return (
-    <Layout>
-      <S.CreditsPageContainer>
-        <S.FlexColumn>
-          <S.RadioInputs>
-			<S.CustomLabel>
-				<S.CustomRadio id="myDebths" name="creditType" value="myDebths" style={{ borderRadius: "1em 0 0 1em" }}
-					checked={selectedOption === 'myDebths'} onChange={myDebthsClicked} />
-				<S.CustomSpan>Ինձ են պարտք</S.CustomSpan>
-			</S.CustomLabel>
-			
-			<S.CustomLabel>
-				<S.CustomRadio id="myCredits" name="creditType" value="myCredits" style={{ borderRadius: "0 1em 1em 0" }}
-					checked={selectedOption === 'myCredits'} onChange={myCreditsClicked} />
-				<S.CustomSpan>Ես եմ պարտք</S.CustomSpan>				
-			</S.CustomLabel>
-          </S.RadioInputs>
-              
-          <Table
-            title='Պարտքեր'
-            data={credits.list}
-            total={credits.total}
-            loadData={loadCredits}
-            columns={tableColumns.credits}
-          />
-        </S.FlexColumn>
-      </S.CreditsPageContainer>
-    </Layout>
-  );
+	useEffect(() => {
+		myDebthsClicked();
+	}, []);
+
+	return (
+		<Layout>
+			<S.CreditsPageContainer>
+				<S.FlexColumn>
+					<S.RadioInputs>
+						<Button
+							onClick={myDebthsClicked}
+							className={
+								selectedOption === 'myDebths'
+									? 'main'
+									: 'bordered'
+							}
+						>
+							Ինձ են պարտք
+						</Button>
+						<Button
+							onClick={myCreditsClicked}
+							className={
+								selectedOption === 'myCredits'
+									? 'main'
+									: 'bordered'
+							}
+						>
+							Ես եմ պարտք
+						</Button>
+					</S.RadioInputs>
+
+					<Table
+						title='Պարտքեր'
+						data={credits.list}
+						total={credits.total}
+						loadData={loadCredits}
+						columns={tableColumns.credits}
+					/>
+				</S.FlexColumn>
+			</S.CreditsPageContainer>
+		</Layout>
+	);
 };

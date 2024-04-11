@@ -45,15 +45,12 @@ export class HttpService {
 					if (res.status === 401) {
 						store.dispatch(logout());
 					}
-					console.log(res.status, 'rersesrsrsr');
 					return res
 						.json()
 						.then(json => {
-							console.log('hehe', res);
 							if (res.status === 401) {
 								// const refreshToken = StorageService.get('refreshToken')
 								// if (refreshToken)
-								console.log('status bug');
 								store.dispatch(logout());
 								return Promise.reject({ status: 401 });
 							}
@@ -72,7 +69,6 @@ export class HttpService {
 						});
 				})
 				.catch(e => {
-					console.log('hehehehe', e);
 					return Promise.reject(e);
 				})
 				.finally(() => {
@@ -80,7 +76,6 @@ export class HttpService {
 						store.dispatch(setLoading(false));
 				});
 		} catch (e) {
-			console.log('muahaha', e);
 			return Promise.reject(e);
 		}
 	}

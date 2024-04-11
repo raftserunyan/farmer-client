@@ -27,12 +27,6 @@ export const login = values => async dispatch => {
 				noToken: true,
 			});
 		if (accessToken) {
-			console.log(
-				accessToken,
-				name,
-				username,
-				'token setting'
-			);
 			const user = {
 				name,
 				username,

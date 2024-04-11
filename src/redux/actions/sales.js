@@ -32,7 +32,6 @@ export const editSale = values => async dispatch => {
 
 		toast.success('Գործողությունը հաջողությամբ կատարվեց');
 	} catch (ex) {
-		console.log(ex, 'ex');
 		toast.error(`Առաջացավ խնդիր: ${ex.message}`);
 	}
 };

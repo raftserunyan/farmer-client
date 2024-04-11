@@ -24,36 +24,44 @@ export const tableColumns = {
 		{
 			Header: 'Քաշ',
 			accessor: 'weight',
+			width: 150,
 		},
 		{
 			Header: 'Գին (ԿԳ)',
 			accessor: 'priceKG',
+			width: 150,
 		},
 		{
 			Header: 'Վճարված',
 			accessor: 'paid',
+			width: 150,
 		},
 		{
 			Header: 'Ամսաթիվ',
 			accessor: ({ date }) => formatDate(date),
+			width: 150,
 		},
 		{
 			Header: 'ԱրԺեք',
 			accessor: 'cost',
+			width: 180,
 		},
 		{
 			Header: 'Պարտք',
 			accessor: 'credit',
+			width: 200,
 		},
 		{
 			Header: 'Ապրանք',
 			accessor: ({ product }) =>
 				`${product.id} (ID) - ${product.name} - ${product.priceKG}`,
+			width: 200,
 		},
 		{
 			Header: 'Հաճախորդ',
 			accessor: ({ customer }) =>
 				`${customer.id} (ID) - ${customer.name} - ${customer.phoneNumber}`,
+			width: 200,
 		},
 	],
 	measurementUnits: [

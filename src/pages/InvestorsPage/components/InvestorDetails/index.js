@@ -13,8 +13,11 @@ export const InvestorDetails = ({
 	investorId,
 	hideModal,
 }) => {
-	console.log(investorId, 'investor');
 	const [investor, setInvestor] = useState({});
+	const [sumOfAllSaleAmounts, setSumOfAllSaleAmounts] =
+		useState(0);
+
+	const isShner = investorId === 1;
 
 	const loadInvestorData = async () => {
 		const data = await HttpService.get(
@@ -24,18 +27,38 @@ export const InvestorDetails = ({
 		setInvestor(data);
 	};
 
+	const loadSumOfAllSaleAmounts = async () => {
+		const sum = await HttpService.get(
+			`investments/GetSumOfAllSaleAmounts`
+		);
+
+		setSumOfAllSaleAmounts(sum);
+	};
+
 	useEffect(() => {
 		loadInvestorData();
+
+		if (isShner) {
+			loadSumOfAllSaleAmounts();
+		}
 	}, []);
-	console.log(investor, 'sdiofno');
+
 	return (
 		<S.InvestorDetailsContainer>
 			<TabMenu tabs={tabs}>
 				<S.TabContainer>
-					<S.TotalAmount>
-						Ընդհանուր Ինվեստիցիա –{' '}
-						{investor.totalAmountOfInvestments ?? 0}
-					</S.TotalAmount>
+					<S.TotalAmounts>
+						<S.TotalAmount>
+							Ընդհանուր Ինվեստիցիա –{' '}
+							{investor.totalAmountOfInvestments ?? 0}
+						</S.TotalAmount>
+						{isShner && (
+							<S.TotalAmount>
+								Ընդհանուր Վաճառք –{' '}
+								{sumOfAllSaleAmounts ?? 0}
+							</S.TotalAmount>
+						)}
+					</S.TotalAmounts>
 					<Table
 						title=''
 						data={investor.investments}
@@ -47,10 +70,18 @@ export const InvestorDetails = ({
 					/>
 				</S.TabContainer>
 				<S.TabContainer>
-					<S.TotalAmount>
-						Ընդհանուր Ծախս –{' '}
-						{investor.totalAmountOfExpenses ?? 0}
-					</S.TotalAmount>
+					<S.TotalAmounts>
+						<S.TotalAmount>
+							Ընդհանուր Ինվեստիցիա –{' '}
+							{investor.totalAmountOfExpenses ?? 0}
+						</S.TotalAmount>
+						{isShner && (
+							<S.TotalAmount>
+								Ընդհանուր Վաճառք –{' '}
+								{sumOfAllSaleAmounts ?? 0}
+							</S.TotalAmount>
+						)}
+					</S.TotalAmounts>
 					<Table
 						title=''
 						data={investor.expenses}

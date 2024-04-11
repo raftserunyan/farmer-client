@@ -21,11 +21,7 @@ export const DatePicker = withTheme(
 			const dateFormatted = moment(date, 'DD/MM/YYYY').utc(
 				true
 			);
-			console.log(
-				dateFormatted,
-				dateFormatted.toISOString(),
-				'sdfiowefm'
-			);
+
 			onChange?.(dateFormatted.toISOString());
 		};
 

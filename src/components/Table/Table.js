@@ -141,7 +141,7 @@ export const Table = ({
 	const pageCount = Math.ceil(totalCount / pageRowCount);
 	const selectedFirstRow = selectedFlatRows[0]?.original;
 	let listToShow = rows;
-	console.log(rows, pageRowCount, 'dsfin');
+
 	if (rows.length > pageRowCount) {
 		listToShow = rows.slice(
 			(currentPage - 1) * pageRowCount,

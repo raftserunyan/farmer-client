@@ -16,7 +16,9 @@ export const ExpensesPage = ({
 		<Layout>
 			<S.ExpensesPageContainer>
 				<Table
-					title='Ծախսեր'
+					title={`Ծախսեր - ${
+						expenses.totalExpensesAmount ?? 0
+					} (գումարային)`}
 					data={expenses.list}
 					total={expenses.total}
 					loadData={loadExpenses}

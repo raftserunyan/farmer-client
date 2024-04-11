@@ -36,7 +36,6 @@ export const InvestmentForm = ({
 	);
 
 	const onSubmit = values => {
-		console.log(values, 'values');
 		if (editableData) {
 			editInvestment(values);
 		} else {

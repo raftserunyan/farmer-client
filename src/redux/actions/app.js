@@ -35,7 +35,7 @@ export const initApp = () => async dispatch => {
 
 		if (token) {
 			// dispatch(loadProfessions())
-			console.log(StorageService.get('authData'), 'sd');
+
 			dispatch(setAuthData(StorageService.get('authData')));
 		}
 	} catch (ex) {

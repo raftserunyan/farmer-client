@@ -79,3 +79,8 @@ export const TotalAmount = styled.div`
 	margin-bottom: 10px;
 	font-weight: 600;
 `;
+
+export const TotalAmounts = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;

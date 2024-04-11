@@ -14,6 +14,7 @@ export const loadExpenses = search => async dispatch => {
 		dispatch({
 			type: EXPENSES_TYPES.LOAD_EXPENSES,
 			list: res.results,
+			totalExpensesAmount: res.totalExpensesAmount,
 			total: res.total,
 		});
 	} catch (ex) {
@@ -36,7 +37,6 @@ export const editExpense = values => async dispatch => {
 
 		toast.success('Գործողությունը հաջողությամբ կատարվեց');
 	} catch (ex) {
-		console.log(ex, 'ex');
 		toast.error(`Առաջացավ խնդիր: ${ex.message}`);
 	}
 };

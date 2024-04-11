@@ -99,7 +99,7 @@ export const TreatmentForm = ({
 						measurementUnits.list.find(
 							item => item.id === values.measurementUnitId
 						);
-					console.log(values, 'values');
+
 					const selectedTreatedProducts =
 						products.list.filter(item =>
 							values.treatedProductsIds.includes(item.id)

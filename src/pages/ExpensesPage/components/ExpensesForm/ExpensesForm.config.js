@@ -1,20 +1,24 @@
 import * as Yup from 'yup';
 
 export const initialValues = {
-	expenseName: '',
-	expenseAmount: '',
+	name: '',
+	amount: '',
 	targetId: '',
+	investorId: '',
 	date: new Date(),
 };
 
 export const validationSchema = Yup.object().shape({
-	expenseName: Yup.string().required(
+	name: Yup.string().required(
 		'Դաշտը չի կարող դատարկ լինել'
 	),
-	expenseAmount: Yup.string().required(
+	amount: Yup.string().required(
 		'Դաշտը չի կարող դատարկ լինել'
 	),
 	targetId: Yup.string().required(
+		'Դաշտը չի կարող դատարկ լինել'
+	),
+	investorId: Yup.string().required(
 		'Դաշտը չի կարող դատարկ լինել'
 	),
 });

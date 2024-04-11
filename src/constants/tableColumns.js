@@ -10,6 +10,16 @@ import { formatDate } from 'helpers';
 import { ApproveCommand } from 'components/ApproveCommand';
 
 export const tableColumns = {
+	investments: [
+		{
+			Header: 'Գումար',
+			accessor: 'amount',
+		},
+		{
+			Header: 'Ամսաթիվ',
+			accessor: ({ date }) => formatDate(date),
+		},
+	],
 	credits: [
 		{
 			Header: 'Քաշ',
@@ -25,7 +35,7 @@ export const tableColumns = {
 		},
 		{
 			Header: 'Ամսաթիվ',
-			accessor: 'date',
+			accessor: ({ date }) => formatDate(date),
 		},
 		{
 			Header: 'ԱրԺեք',
@@ -393,11 +403,6 @@ export const tableColumns = {
 			Header: 'Հեռախոսահամար',
 			accessor: 'phoneNumber',
 		},
-		{
-			Header: 'Ներդրումներ',
-			accessor: ({ investments }) =>
-				investments.map(item => item.amount).join(', '),
-		},
 	],
 	product: [
 		{
@@ -417,7 +422,7 @@ export const tableColumns = {
 		{
 			Header: 'Քանակ',
 			accessor: ({ drugAmount, measurementUnit }) =>
-				`${drugAmount} ${measurementUnit?.name}`,
+				`${drugAmount} ${measurementUnit?.name || ''}`,
 		},
 		{
 			Header: 'Բուժված ապրանքներ ID ներ',
@@ -456,15 +461,37 @@ export const tableColumns = {
 	expense: [
 		{
 			Header: 'Անվանում',
-			accessor: 'expenseName',
+			accessor: 'name',
 		},
 		{
 			Header: 'Գումար',
-			accessor: 'expenseAmount',
+			accessor: 'amount',
 		},
 		{
 			Header: 'Նպատակ',
-			accessor: 'expensePurpose',
+			accessor: ({ target }) => target?.name,
+		},
+		{
+			Header: 'Ներդրող',
+			accessor: ({ investor }) => investor?.name,
+		},
+		{
+			Header: 'Ամսաթիվ',
+			accessor: ({ date }) => formatDate(date),
+		},
+	],
+	investorExpenses: [
+		{
+			Header: 'Անվանում',
+			accessor: 'name',
+		},
+		{
+			Header: 'Գումար',
+			accessor: 'amount',
+		},
+		{
+			Header: 'Նպատակ',
+			accessor: ({ target }) => target?.name,
 		},
 		{
 			Header: 'Ամսաթիվ',
@@ -474,8 +501,7 @@ export const tableColumns = {
 	sales: [
 		{
 			Header: 'Ապրանք',
-			accessor: ({ currentProduct }) =>
-				currentProduct?.name,
+			accessor: ({ product }) => product?.name,
 		},
 		{
 			Header: 'Քաշ',
@@ -487,12 +513,12 @@ export const tableColumns = {
 		},
 		{
 			Header: 'Հաճախորդ',
-			accessor: ({ currentCustomer }) =>
-				`${currentCustomer.name} - ${currentCustomer.phoneNumber}`,
+			accessor: ({ customer }) =>
+				`${customer.name} - ${customer.phoneNumber}`,
 		},
 		{
 			Header: 'Վճարված գումար',
-			accessor: 'payed',
+			accessor: 'paid',
 		},
 		{
 			Header: 'Պարտք',

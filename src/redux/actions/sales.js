@@ -6,12 +6,15 @@ import { HttpService } from 'services';
 export const loadSales = search => async dispatch => {
 	try {
 		// const { data, total } = await HttpService.post('sales', search)
-		const list = await HttpService.post('sales', search);
+		const data = await HttpService.post(
+			'sales/get',
+			search
+		);
 
 		dispatch({
 			type: SALES_TYPES.LOAD_SALES,
-			list,
-			total: list.length,
+			list: data.results,
+			total: data.total,
 		});
 	} catch (ex) {
 		toast.error('Առաջացավ խնդիր');
@@ -20,11 +23,7 @@ export const loadSales = search => async dispatch => {
 
 export const editSale = values => async dispatch => {
 	try {
-		await HttpService.put(
-			`sales`,
-			{ id: values.id },
-			values
-		);
+		await HttpService.put(`sales/${values.id}`, '', values);
 
 		dispatch({
 			type: SALES_TYPES.EDIT_SALE,

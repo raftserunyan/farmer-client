@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadProducts } from 'redux/actions/products';
 import { loadMeasurementUnits } from 'redux/actions/measurementUnits';
 import { measurementUnits } from 'redux/reducers/measurementUnits';
-import { omit } from 'lodash';
+import { omit, values } from 'lodash';
 
 export const TreatmentForm = ({
 	hideModal,
@@ -74,7 +74,19 @@ export const TreatmentForm = ({
 			<Formik
 				onSubmit={onSubmit}
 				validationSchema={validationSchema}
-				initialValues={editableData || initialValues}
+				initialValues={
+					editableData
+						? {
+								...editableData,
+								measurementUnitId:
+									editableData.measurementUnit?.id,
+								treatedProductsIds:
+									editableData.products?.map(
+										item => item.id
+									),
+						  }
+						: initialValues
+				}
 			>
 				{({
 					values,
@@ -87,6 +99,12 @@ export const TreatmentForm = ({
 						measurementUnits.list.find(
 							item => item.id === values.measurementUnitId
 						);
+					console.log(values, 'values');
+					const selectedTreatedProducts =
+						products.list.filter(item =>
+							values.treatedProductsIds.includes(item.id)
+						);
+
 					return (
 						<S.FormContentContainer>
 							<Input
@@ -122,16 +140,16 @@ export const TreatmentForm = ({
 										);
 									}}
 								/>
-								{errors.treatedProductsIds &&
-									touched.treatedProductsIds && (
+								{errors.measurementUnitId &&
+									touched.measurementUnitId && (
 										<S.ErrorMessage>
-											{errors.treatedProductsIds}
+											{errors.measurementUnitId}
 										</S.ErrorMessage>
 									)}
 							</S.FormItem>
 							<S.FormItem>
 								<Select
-									value={values.treatedProducts}
+									value={selectedTreatedProducts}
 									options={products.list}
 									placeholder='Ապրանքներ'
 									isMulti={true}

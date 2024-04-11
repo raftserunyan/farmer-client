@@ -18,7 +18,7 @@ export const TargetsPage = ({
 				<Table
 					title='Նպատակներ'
 					data={targets.list}
-					total={targets.length}
+					total={targets.total}
 					loadData={loadTargets}
 					onDelete={deleteTarget}
 					FormComponent={TargetForm}

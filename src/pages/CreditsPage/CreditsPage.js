@@ -12,7 +12,7 @@ export const CreditsPage = ({ credits, loadCredits }) => {
 				<Table
 					title='Պարտքեր'
 					data={credits.list}
-					total={credits.length}
+					total={credits.total}
 					loadData={loadCredits}
 					columns={tableColumns.credits}
 				/>

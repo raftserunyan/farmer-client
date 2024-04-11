@@ -108,18 +108,10 @@ export class HttpService {
 		);
 	}
 
-	static async delete(path, search, options) {
-		// const ids = Array.isArray(search.ids)
-		// 	? search
-		// 	: {
-		// 			id: search.id,
-		// 	  };
-
-		// const queryString = qs.stringify(filterNonNull(ids));
-
+	static async delete(path, { id }, options) {
 		return await HttpService.request(
 			'delete',
-			path, // + `?${queryString}`,
+			path + `/${id}`,
 			null,
 			options
 		);

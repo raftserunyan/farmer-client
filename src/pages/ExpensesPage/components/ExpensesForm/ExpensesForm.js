@@ -10,6 +10,8 @@ import {
 } from './ExpensesForm.config';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadTargets } from 'redux/actions/targets';
+import { loadInvestors } from 'redux/actions/investors';
+import { StorageService } from 'services';
 
 export const ExpensesForm = ({
 	hideModal,
@@ -19,6 +21,7 @@ export const ExpensesForm = ({
 }) => {
 	const dispatch = useDispatch();
 	const targets = useSelector(state => state.targets);
+	const investors = useSelector(state => state.investors);
 
 	const formActionType = useMemo(
 		() => (editableData ? 'Փոփոխել' : 'Ավելացնել'),
@@ -29,6 +32,11 @@ export const ExpensesForm = ({
 		if (editableData) {
 			editExpense(values);
 		} else {
+			if (values.date)
+				StorageService.set(
+					'expenseDefaultDate',
+					values.date
+				);
 			createExpense(values);
 		}
 
@@ -39,6 +47,16 @@ export const ExpensesForm = ({
 		if (!targets.loaded)
 			dispatch(
 				loadTargets({
+					pageNumber: 1,
+					pageSize: 100000,
+				})
+			);
+	}, []);
+
+	useEffect(() => {
+		if (!investors.loaded)
+			dispatch(
+				loadInvestors({
 					pageNumber: 1,
 					pageSize: 100000,
 				})
@@ -56,7 +74,21 @@ export const ExpensesForm = ({
 			<Formik
 				onSubmit={onSubmit}
 				validationSchema={validationSchema}
-				initialValues={editableData || initialValues}
+				initialValues={
+					editableData
+						? {
+								...editableData,
+								targetId: editableData.target?.id,
+								investorId: editableData.investor?.id,
+						  }
+						: {
+								...initialValues,
+								date:
+									StorageService.get(
+										'expenseDefaultDate'
+									) || new Date(),
+						  }
+				}
 			>
 				{({
 					values,
@@ -68,42 +100,47 @@ export const ExpensesForm = ({
 					const selectedTarget = targets.list.find(
 						target => target.id === values.targetId
 					);
+					const selectedInvestor = investors.list.find(
+						investor => investor.id === values.investorId
+					);
+
+					if (
+						!!investors.list?.length &&
+						!values.investorId
+					) {
+						setFieldValue(
+							'investorId',
+							investors.list.find(item => item.id === 1)?.id
+						);
+					}
 
 					return (
 						<S.FormContentContainer>
 							<Input
-								value={values.expenseName}
+								value={values.name}
 								placeholder='Անվանում'
-								onChange={val =>
-									setFieldValue('expenseName', val)
-								}
+								onChange={val => setFieldValue('name', val)}
 								onEnter={handleSubmit}
 								autoFocus
-								error={
-									touched.expenseName && errors.expenseName
-								}
+								error={touched.name && errors.name}
 							/>
 							<S.FormItem>
 								<DatePicker
 									placeholder='Ամսաթիվ'
 									date={values.date}
-									disabled={true}
 									onChange={val =>
 										setFieldValue('date', val)
 									}
 								/>
 							</S.FormItem>
 							<Input
-								value={values.expenseAmount}
+								value={values.amount}
 								placeholder='Գումար'
 								onChange={val =>
-									setFieldValue('expenseAmount', val)
+									setFieldValue('amount', val)
 								}
 								onEnter={handleSubmit}
-								error={
-									touched.expenseAmount &&
-									errors.expenseAmount
-								}
+								error={touched.amount && errors.amount}
 							/>
 							<S.FormItem>
 								<Select
@@ -114,11 +151,28 @@ export const ExpensesForm = ({
 										setFieldValue('targetId', val?.value)
 									}
 								/>
-								{errors.productId && touched.productId && (
-									<S.ErrorMessage>
-										{errors.productId}
-									</S.ErrorMessage>
-								)}
+								{errors.investorId &&
+									touched.investorId && (
+										<S.ErrorMessage>
+											{errors.investorId}
+										</S.ErrorMessage>
+									)}
+							</S.FormItem>
+							<S.FormItem>
+								<Select
+									value={selectedInvestor}
+									options={investors.list}
+									placeholder='Ներդրող'
+									onChange={val =>
+										setFieldValue('investorId', val?.value)
+									}
+								/>
+								{errors.investorId &&
+									touched.investorId && (
+										<S.ErrorMessage>
+											{errors.investorId}
+										</S.ErrorMessage>
+									)}
 							</S.FormItem>
 							<S.ButtonsContainer>
 								<Button

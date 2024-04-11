@@ -5,7 +5,7 @@ export const initialValues = {
 	weight: '',
 	priceKG: '',
 	customerId: null,
-	payed: '',
+	paid: '',
 	date: null,
 };
 
@@ -22,7 +22,7 @@ export const validationSchema = Yup.object().shape({
 	priceKG: Yup.number().required(
 		'Դաշտը չի կարող դատարկ լինել'
 	),
-	payed: Yup.string().required(
+	paid: Yup.string().required(
 		'Դաշտը չի կարող դատարկ լինել'
 	),
 });

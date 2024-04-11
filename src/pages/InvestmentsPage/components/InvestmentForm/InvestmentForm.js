@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 
 import * as S from './InvestmentForm.styles';
 import closeIcon from 'images/close.png';
-import { Input, Button, Select } from 'ui';
+import { Input, Button, Select, DatePicker } from 'ui';
 import { Formik } from 'formik';
 import {
 	initialValues,
@@ -36,6 +36,7 @@ export const InvestmentForm = ({
 	);
 
 	const onSubmit = values => {
+		console.log(values, 'values');
 		if (editableData) {
 			editInvestment(values);
 		} else {
@@ -104,6 +105,15 @@ export const InvestmentForm = ({
 											{errors.investorId}
 										</S.ErrorMessage>
 									)}
+							</S.FormItem>
+							<S.FormItem>
+								<DatePicker
+									placeholder='Ամսաթիվ'
+									date={values.date}
+									onChange={val =>
+										setFieldValue('date', val)
+									}
+								/>
 							</S.FormItem>
 							<S.ButtonsContainer>
 								<Button

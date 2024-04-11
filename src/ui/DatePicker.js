@@ -18,8 +18,14 @@ export const DatePicker = withTheme(
 		...rest
 	}) => {
 		const onSelectDate = date => {
-			const dateFormatted = moment(date, 'DD/MM/YYYY');
-
+			const dateFormatted = moment(date, 'DD/MM/YYYY').utc(
+				true
+			);
+			console.log(
+				dateFormatted,
+				dateFormatted.toISOString(),
+				'sdfiowefm'
+			);
 			onChange?.(dateFormatted.toISOString());
 		};
 

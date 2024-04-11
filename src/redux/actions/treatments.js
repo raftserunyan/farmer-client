@@ -1,3 +1,4 @@
+import { pick } from 'lodash';
 import { toast } from 'react-toastify';
 
 import { TREATMENTS_TYPES } from 'redux/types/treatments';
@@ -25,8 +26,14 @@ export const editTreatment = values => async dispatch => {
 	try {
 		await HttpService.put(
 			`treatments/${values.id}`,
-			{},
-			values
+			'',
+			pick(values, [
+				'drugName',
+				'drugAmount',
+				'date',
+				'measurementUnitId',
+				'treatedProductsIds',
+			])
 		);
 
 		dispatch({

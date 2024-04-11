@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 
 import { INVESTMENTS_TYPES } from 'redux/types/investments';
 import { HttpService } from 'services';
+import { pick } from 'lodash';
 
 export const loadInvestments = search => async dispatch => {
 	try {
@@ -25,8 +26,8 @@ export const editInvestment = values => async dispatch => {
 	try {
 		await HttpService.put(
 			`investments/${values.id}`,
-			{},
-			values
+			'',
+			pick(values, ['amount', 'date', 'investorId'])
 		);
 
 		dispatch({
@@ -45,7 +46,7 @@ export const createInvestment =
 		try {
 			const createdInvestment = await HttpService.post(
 				'investments',
-				values
+				pick(values, ['amount', 'date', 'investorId'])
 			);
 
 			dispatch({
@@ -60,6 +61,7 @@ export const createInvestment =
 	};
 
 export const deleteInvestment = ids => async dispatch => {
+	console.log(ids, 'ids');
 	try {
 		await HttpService.delete('investments', { id: ids[0] });
 

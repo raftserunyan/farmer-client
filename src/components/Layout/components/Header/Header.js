@@ -16,7 +16,7 @@ export const Header = ({ user, logout }) => {
 			<S.HomeContainer>
 				<S.AppLink to='/students'>
 					<img src={logoPic} />
-					<S.SidebarTitle>Ադմին</S.SidebarTitle>
+					<S.SidebarTitle>DOGHS AGRO</S.SidebarTitle>
 				</S.AppLink>
 			</S.HomeContainer>
 			<S.HeaderItemsList>

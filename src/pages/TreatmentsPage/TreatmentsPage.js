@@ -18,7 +18,7 @@ export const TreatmentsPage = ({
 				<Table
 					title='Բուժումներ'
 					data={treatments.list}
-					total={treatments.length}
+					total={treatments.total}
 					loadData={loadTreatments}
 					onDelete={deleteTreatment}
 					FormComponent={TreatmentForm}

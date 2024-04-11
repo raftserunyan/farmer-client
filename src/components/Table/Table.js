@@ -72,6 +72,7 @@ export const Table = ({
 	hasSelections,
 	FormComponent,
 	FilterComponent,
+	pageRowCount = 6,
 	withoutCheckboxes,
 	selectedRowIndexes,
 	withoutDefaultActions,
@@ -137,8 +138,16 @@ export const Table = ({
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const totalCount = total || listData.length;
-	const pageCount = Math.ceil(totalCount / 6);
+	const pageCount = Math.ceil(totalCount / pageRowCount);
 	const selectedFirstRow = selectedFlatRows[0]?.original;
+	let listToShow = rows;
+	console.log(rows, pageRowCount, 'dsfin');
+	if (rows.length > pageRowCount) {
+		listToShow = rows.slice(
+			(currentPage - 1) * pageRowCount,
+			(currentPage - 1) * pageRowCount + pageRowCount
+		);
+	}
 
 	const changePage = useCallback(
 		page => {
@@ -148,7 +157,7 @@ export const Table = ({
 			setCurrentPage(page);
 			loadData?.({
 				...currentQuery,
-				pageSize: 20,
+				pageSize: pageRowCount,
 				pageNumber: page, // (page - 1) * 6,
 			});
 		},
@@ -249,14 +258,14 @@ export const Table = ({
 			];
 		}
 
-		// if (FilterComponent) {
-		//   actions.push({
-		//     key: 4,
-		//     icon: filterIcon,
-		//     title: 'Ֆիլտրել',
-		//     onClick: () => showModal(FilterComponent)
-		//   });
-		// }
+		if (FilterComponent) {
+			actions.push({
+				key: 4,
+				icon: filterIcon,
+				title: 'Ֆիլտրել',
+				onClick: () => showModal(FilterComponent),
+			});
+		}
 
 		return actions;
 	}, [
@@ -348,7 +357,7 @@ export const Table = ({
 					))}
 				</thead>
 				<tbody {...getTableBodyProps()} ref={tBodyRef}>
-					{rows.map(row => {
+					{listToShow.map(row => {
 						prepareRow(row);
 						const { onClick: onExpandableRowClick } =
 							row.getToggleRowExpandedProps();

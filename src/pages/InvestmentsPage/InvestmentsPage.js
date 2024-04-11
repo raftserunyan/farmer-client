@@ -25,7 +25,7 @@ export const InvestmentsPage = ({
 				<Table
 					title='Ներդրումներ'
 					data={investments.list}
-					total={investments.length}
+					total={investments.total}
 					loadData={loadInvestments}
 					onDelete={deleteInvestment}
 					FormComponent={InvestmentForm}

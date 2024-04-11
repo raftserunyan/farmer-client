@@ -25,7 +25,7 @@ export const editExpense = values => async dispatch => {
 	try {
 		await HttpService.put(
 			`expenses/${values.id}`,
-			{},
+			'',
 			values
 		);
 

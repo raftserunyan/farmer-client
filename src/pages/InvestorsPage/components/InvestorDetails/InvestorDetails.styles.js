@@ -1,23 +1,29 @@
 import styled from 'styled-components';
 import { CenteredFlex } from 'ui/styles';
 
-export const ExpensesFormContainer = styled.div`
+export const InvestorDetailsContainer = styled.div`
 	display: flex;
 	align-items: center;
 	background: #fff;
 	border-radius: 15px;
 	margin-top: -20px;
 	padding-bottom: 20px;
-	min-width: 450px;
+	min-width: 1050px;
 	flex-direction: column;
 	gap: 10px;
+	position: relative;
+	overflow: hidden;
+
+	.Tab-Item {
+		font-weight: 600;
+	}
 `;
 
 export const FormHeaderContainer = styled.div`
 	display: flex;
 	align-items: center;
-	padding: 5px 15px;
-	width: calc(100% - 30px);
+	// padding: 0px 15px;
+	width: 100%;
 	justify-content: space-between;
 	border-bottom: 2px solid #f6f6f8;
 `;
@@ -30,8 +36,12 @@ export const HeaderTitle = styled.div`
 export const CloseFormContainer = styled(CenteredFlex)`
 	width: 45px;
 	height: 45px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 	border-radius: 20%;
 	cursor: pointer;
+	align-self: flex-start;
 	transition: background 0.3s ease;
 
 	&:hover {
@@ -54,32 +64,18 @@ export const FormContentContainer = styled.div`
 	gap: 10px;
 `;
 
-export const ButtonsContainer = styled.div`
-	display: flex;
-	width: 100%;
-	margin-top: 10px;
-	justify-content: flex-end;
-	gap: 15px;
-
-	.Button {
-		width: 150px;
-	}
-`;
-
-export const ErrorMessage = styled.div`
-	font-size: 12px;
-	color: red;
-	margin-left: 10px;
-	font-weight: 500;
-`;
-
-export const FormItem = styled.div`
+export const TabContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	padding: 15px;
 	width: 100%;
-	gap: 10px;
 
-	.Date-Picker {
-		width: 100%;
+	tbody {
+		min-height: 230px !important;
 	}
+`;
+
+export const TotalAmount = styled.div`
+	margin-bottom: 10px;
+	font-weight: 600;
 `;

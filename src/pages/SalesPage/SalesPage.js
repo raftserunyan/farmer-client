@@ -18,7 +18,7 @@ export const SalesPage = ({
 				<Table
 					title='Վաճառքներ'
 					data={sales.list}
-					total={sales.list.length}
+					total={sales.total}
 					loadData={loadSales}
 					onDelete={deleteSale}
 					FormComponent={SalesForm}

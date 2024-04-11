@@ -69,7 +69,15 @@ export const SalesForm = ({
 			<Formik
 				onSubmit={onSubmit}
 				validationSchema={validationSchema}
-				initialValues={editableData || initialValues}
+				initialValues={
+					editableData
+						? {
+								...editableData,
+								productId: editableData.product?.id,
+								customerId: editableData.customer?.id,
+						  }
+						: initialValues
+				}
 			>
 				{({
 					values,
@@ -155,13 +163,11 @@ export const SalesForm = ({
 								)}
 							</S.FormItem>
 							<Input
-								value={values.payed}
+								value={values.paid}
 								placeholder='Վճարված գումար'
-								onChange={val =>
-									setFieldValue('payed', val)
-								}
+								onChange={val => setFieldValue('paid', val)}
 								onEnter={handleSubmit}
-								error={touched.payed && errors.payed}
+								error={touched.paid && errors.paid}
 							/>
 							<S.ButtonsContainer>
 								<Button

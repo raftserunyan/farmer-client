@@ -59,7 +59,9 @@ export const createTarget = values => async dispatch => {
 
 export const deleteTarget = ids => async dispatch => {
 	try {
-		await HttpService.delete(`targets/${ids[0]}`);
+		await HttpService.delete(`targets`, {
+			id: ids[0],
+		});
 
 		dispatch({
 			type: TARGETS_TYPES.DELETE_TARGET,

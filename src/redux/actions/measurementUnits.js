@@ -64,9 +64,9 @@ export const createMeasurementUnit =
 export const deleteMeasurementUnit =
 	ids => async dispatch => {
 		try {
-			await HttpService.delete(
-				`measurementUnits/${ids[0]}`
-			);
+			await HttpService.delete(`measurementUnits`, {
+				id: ids[0],
+			});
 
 			dispatch({
 				type: MEASUREMENT_UNITS_TYPES.DELETE_MEASUREMENT_UNIT,

@@ -61,7 +61,7 @@ export const createExpense = values => async dispatch => {
 
 export const deleteExpense = ids => async dispatch => {
 	try {
-		await HttpService.delete(`expenses/${ids[0]}`, {
+		await HttpService.delete(`expenses`, {
 			id: ids[0],
 		});
 

@@ -8,7 +8,7 @@ export const constructRafikFilters = (
 
 	Object.keys(values).forEach(filterKey => {
 		const filterValue = values[filterKey];
-		console.log(filterValue, 'filterValue');
+
 		const isNumberField =
 			!stringFields.includes(filterKey) &&
 			!isNaN(+filterValue) &&
@@ -46,6 +46,6 @@ export const constructRafikFilters = (
 				operation: 'lte',
 			});
 	});
-	console.log(filters, 'sfioewfoi');
+
 	return filters;
 };

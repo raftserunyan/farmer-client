@@ -1,3 +1,7 @@
 export const initialValues = {
-  country: ''
-}
+	name: '',
+	address: '',
+	phoneNumber: '',
+	accountNumber: '',
+	hvhh: '',
+};

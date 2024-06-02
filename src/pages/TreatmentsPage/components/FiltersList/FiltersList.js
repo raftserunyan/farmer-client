@@ -1,13 +1,14 @@
-import React from 'react';
-import { Button, Input } from 'ui';
+import React, { useEffect } from 'react';
+import { Button, DatePicker, Input, Select } from 'ui';
 import { Formik } from 'formik';
 
 import { Filter } from 'components';
 import * as S from './FiltersList.styles';
 import { initialValues } from './FiltersList.config';
+import { useDispatch } from 'react-redux';
+import { constructRafikFilters } from 'helpers/rafik';
 import { useSearchParams } from 'hooks/useSearchParams';
 import { loadTreatments } from 'redux/actions/treatments';
-import { useDispatch } from 'react-redux';
 
 export const FiltersList = ({ hideModal }) => {
 	const dispatch = useDispatch();
@@ -16,27 +17,18 @@ export const FiltersList = ({ hideModal }) => {
 
 	const search = values => {
 		hideModal();
-		if (!values) {
-			dispatch(
-				loadTreatments({
-					pageNumber: 1,
-					pageSize: 6,
+		dispatch(
+			loadTreatments(
+				constructRafikFilters({
+					drugName: values.drugName,
+					drugAmount: values.drugAmount,
+					date: {
+						start: values.startDate,
+						end: values.endDate,
+					},
 				})
-			);
-		} else {
-			dispatch(
-				loadTreatments({
-					pageNumber: 1,
-					pageSize: 6,
-					andFilters: Object.keys(values).map(key => ({
-						property: key,
-						value: values[key],
-						operation: 'like',
-					})),
-				})
-			);
-		}
-
+			)
+		);
 		updateSearchParams(values);
 	};
 
@@ -72,13 +64,31 @@ export const FiltersList = ({ hideModal }) => {
 									}
 									onEnter={handleSubmit}
 								/>
+								<S.RowContainer>
+									<DatePicker
+										placeholder='Ամսաթիվ սկիզբ'
+										date={values.startDate}
+										onChange={val =>
+											setFieldValue('startDate', val)
+										}
+									/>
+									<DatePicker
+										placeholder='Ամսաթիվ ավարտ'
+										className='Custom-Position'
+										date={values.endDate}
+										onChange={val =>
+											setFieldValue('endDate', val)
+										}
+									/>
+								</S.RowContainer>
 							</S.List>
 							<S.ActionsContainer>
 								<Button
 									className='bordered'
 									onClick={() => {
 										resetForm();
-										search();
+										updateSearchParams({});
+										search({});
 									}}
 								>
 									Մաքրել

@@ -1,3 +1,5 @@
 export const initialValues = {
-  name: ''
-}
+	amount: '',
+	investorId: null,
+	date: new Date(),
+};

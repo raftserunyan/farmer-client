@@ -21,7 +21,6 @@ export const MeasurementUnitsPage = ({
 					total={measurementUnits.total}
 					loadData={loadMeasurementUnits}
 					onDelete={deleteMeasurementUnit}
-					pageRowCount={1}
 					FormComponent={InvestorForm}
 					FilterComponent={FiltersList}
 					columns={tableColumns.measurementUnits}

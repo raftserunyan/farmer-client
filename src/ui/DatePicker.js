@@ -15,6 +15,7 @@ export const DatePicker = withTheme(
 		onChange,
 		placeholder,
 		disabled,
+		className = '',
 		...rest
 	}) => {
 		const onSelectDate = date => {
@@ -32,7 +33,7 @@ export const DatePicker = withTheme(
 
 		return (
 			<DatePickerContainer
-				className='Date-Picker'
+				className={`Date-Picker ${className}`}
 				disabled={disabled}
 			>
 				<DatePickerComponent

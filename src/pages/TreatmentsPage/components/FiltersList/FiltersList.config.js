@@ -1,3 +1,8 @@
 export const initialValues = {
-  name: ''
-}
+	drugName: '',
+	drugAmount: '',
+	treatedProductsIds: [],
+	treatedProducts: null,
+	measurementUnitId: null,
+	date: null,
+};

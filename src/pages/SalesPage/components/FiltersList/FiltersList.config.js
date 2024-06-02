@@ -1,3 +1,8 @@
 export const initialValues = {
-  name: ''
-}
+	productId: null,
+	weight: '',
+	priceKG: '',
+	customerId: null,
+	paid: '',
+	date: null,
+};

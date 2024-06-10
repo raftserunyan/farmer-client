@@ -1,6 +1,6 @@
 export const constructRafikFilters = (
 	values,
-	{ stringFields = [] }
+	{ stringFields = [] } = {}
 ) => {
 	const filters = { andFilters: [] };
 

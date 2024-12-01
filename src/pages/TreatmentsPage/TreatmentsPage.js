@@ -16,7 +16,7 @@ export const TreatmentsPage = ({
 		<Layout>
 			<S.TreatmentsPageContainer>
 				<Table
-					title='Բուժումներ'
+					title='Բուժումներ և Պարարտացում'
 					data={treatments.list}
 					total={treatments.total}
 					loadData={loadTreatments}

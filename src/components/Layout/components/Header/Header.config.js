@@ -1,7 +1,7 @@
 export const headerItems = [
 	{
 		id: 1,
-		text: 'Բուժումներ',
+		text: 'Բուժումներ և Պարարտացում',
 		path: '/treatments',
 	},
 	{

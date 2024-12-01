@@ -136,7 +136,7 @@ export const Table = ({
 	);
 
 	const [currentPage, setCurrentPage] = useState(1);
-	const [selectedPageSize, setSelectedPageSize] = useState(10)
+	const [selectedPageSize, setSelectedPageSize] = useState(25)
 
 	const totalCount = total || listData.length;
 	const pageCount = Math.ceil(totalCount / selectedPageSize);

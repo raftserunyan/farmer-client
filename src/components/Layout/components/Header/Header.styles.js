@@ -161,8 +161,8 @@ export const HomeContainer = styled.div`
   padding-right: 40px;
 
   img {
-    width: 80px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
 `
 

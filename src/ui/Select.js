@@ -74,6 +74,7 @@ export const Select = withTheme(
 		options,
 		accessorKey,
 		placeholder,
+		isClearable = true,
 		...rest
 	}) => {
 		const optionsFormatted = useMemo(() => {
@@ -94,11 +95,11 @@ export const Select = withTheme(
 
 			return value
 				? {
-						value: isObject(value) ? value.id : value,
-						label: isObject(value)
-							? value[accessorKey]
-							: value,
-				  }
+					value: isObject(value) ? value.id : value,
+					label: isObject(value)
+						? value[accessorKey]
+						: value,
+				}
 				: null;
 		}, [value, accessorKey]);
 
@@ -110,7 +111,7 @@ export const Select = withTheme(
 					value={valueFormatted}
 					placeholder={placeholder}
 					options={optionsFormatted}
-					isClearable={true}
+					isClearable={isClearable}
 					className='React-Select'
 					styles={colourStyles(theme)}
 				/>

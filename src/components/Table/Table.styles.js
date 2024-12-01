@@ -7,9 +7,13 @@ export const TableContainer = styled.div`
   position: relative;
   min-height: 260px;
   width: 100%;
-  height: min-content;
+  height: 100%;
   box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
   
+  table {
+    overflow: hidden;
+  }
+
   .tooltiptext {
     visibility: hidden;
     width: 156px;
@@ -65,7 +69,6 @@ export const TableContainer = styled.div`
     height: mifn-content;
     position: relative;
 
-    overflow: auto;
     ::-webkit-scrollbar {
       height: 10px;
     }
@@ -109,8 +112,25 @@ export const TableContainer = styled.div`
     tbody {
       display: block;
       width: 100%;
-      height: 100%;
-      min-height: 400px;
+      height: 370px;
+      overflow: auto;
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px #eeeeee; 
+        border-radius: 10px;
+      }
+       
+      ::-webkit-scrollbar-thumb {
+        background: ${({ theme }) => theme.colors.green};
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: ${({ theme }) => theme.colors.lightGreen};
+      }
 
       > tr {
         min-width: 100%;
@@ -315,7 +335,7 @@ export const PaginationContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   background: #fff;
-  height: 68px;
+  min-height: 80px;
   // width: calc(100% - 248px);
   border-top: 2px solid #f6f6f8;
   border-bottom-left-radius: 10px;
@@ -340,14 +360,6 @@ export const PaginationInfoContainer = styled.div`
     &.bordered {
       height: 36px;
     }
-
-    &:first-child {
-      width: 60px !important;
-    }
-
-    &:last-child {
-      width: 60px !important;
-    }
   }
 `
 
@@ -357,7 +369,11 @@ export const TotalCount = styled.div`
 
 export const PaginationActionsContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 30px;
+
+  .SelectContainer {
+    width: 80px;
+  }
 `
 
 export const SortIcon = styled.img`
@@ -367,5 +383,22 @@ export const SortIcon = styled.img`
 
   &.ascSort {
     transform: rotate(180deg);
+  }
+`
+
+export const ArrowsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  div {
+
+    &:first-child {
+      width: 60px !important;
+    }
+  
+    &:last-child {
+      width: 60px !important;
+    }
   }
 `

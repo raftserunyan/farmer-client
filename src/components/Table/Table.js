@@ -16,7 +16,7 @@ import {
 import qs from 'qs';
 import cx from 'classnames';
 
-import { Button } from 'ui';
+import { Button, Select } from 'ui';
 import * as S from './Table.styles';
 import { history } from 'system/history';
 import { formatDate, withConfirmation } from 'helpers';
@@ -72,7 +72,7 @@ export const Table = ({
 	hasSelections,
 	FormComponent,
 	FilterComponent,
-	pageRowCount = 6,
+	pageRowCount = 15,
 	withoutCheckboxes,
 	selectedRowIndexes,
 	withoutDefaultActions,
@@ -136,9 +136,10 @@ export const Table = ({
 	);
 
 	const [currentPage, setCurrentPage] = useState(1);
+	const [selectedPageSize, setSelectedPageSize] = useState(10)
 
 	const totalCount = total || listData.length;
-	const pageCount = Math.ceil(totalCount / pageRowCount);
+	const pageCount = Math.ceil(totalCount / selectedPageSize);
 	const selectedFirstRow = selectedFlatRows[0]?.original;
 	let listToShow = rows;
 
@@ -157,11 +158,11 @@ export const Table = ({
 			setCurrentPage(page);
 			loadData?.({
 				...currentQuery,
-				pageSize: pageRowCount,
+				pageSize: selectedPageSize,
 				pageNumber: page, // (page - 1) * 6,
 			});
 		},
-		[loadData, setCurrentPage]
+		[loadData, setCurrentPage, selectedPageSize]
 	);
 
 	const gotoPage = useCallback(
@@ -181,7 +182,7 @@ export const Table = ({
 
 	useEffect(() => {
 		gotoPage(1);
-	}, []);
+	}, [gotoPage]);
 
 	const paginationButtons = useMemo(() => {
 		const buttons = [];
@@ -338,9 +339,8 @@ export const Table = ({
 									<div
 										{...column.getResizerProps()}
 										onClick={e => e.stopPropagation()}
-										className={`resizer ${
-											column.isResizing ? 'isResizing' : ''
-										}`}
+										className={`resizer ${column.isResizing ? 'isResizing' : ''
+											}`}
 									/>
 									{column.isSorted ? (
 										<S.SortIcon
@@ -457,23 +457,34 @@ export const Table = ({
 						Ընդհանուր {totalCount} գրառում
 					</S.TotalCount>
 					<S.PaginationActionsContainer>
-						<Button
-							onClick={prevPage}
-							className={cx('bordered', {
-								disable: currentPage === 1,
-							})}
-						>
-							{'<'}
-						</Button>
-						{paginationButtons}
-						<Button
-							onClick={nextPage}
-							className={cx('bordered', {
-								disable: currentPage === pageCount,
-							})}
-						>
-							{'>'}
-						</Button>
+						<Select
+							menuPlacement='top'
+							value={selectedPageSize}
+							isClearable={false}
+							options={[5, 10, 25, 50]}
+							onChange={({ value }) =>
+								setSelectedPageSize(value)
+							}
+						/>
+						<S.ArrowsContainer>
+							<Button
+								onClick={prevPage}
+								className={cx('bordered', {
+									disable: currentPage === 1,
+								})}
+							>
+								{'<'}
+							</Button>
+							{paginationButtons}
+							<Button
+								onClick={nextPage}
+								className={cx('bordered', {
+									disable: currentPage === pageCount,
+								})}
+							>
+								{'>'}
+							</Button>
+						</S.ArrowsContainer>
 					</S.PaginationActionsContainer>
 				</S.PaginationInfoContainer>
 			</S.PaginationContainer>

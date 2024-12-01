@@ -18,7 +18,7 @@ export const ProductsPage = ({
 				<Table
 					title='Ապրանքներ'
 					data={products.list}
-					total={products.length}
+					total={products.total}
 					loadData={loadProducts}
 					onDelete={deleteProduct}
 					FormComponent={ProductForm}

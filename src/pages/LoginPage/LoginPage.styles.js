@@ -29,6 +29,6 @@ export const LoginForm = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 135px;
-  height: 95px;
+  width: 150px;
+  height: 150px;
 `
